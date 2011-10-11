@@ -1,7 +1,7 @@
 namespace PI.WebGarten.Demos.Todos
 {
     using PI.WebGarten.Demos.Todos.Model;
-    using PI.WebGarten.Html;
+    using PI.WebGarten.HttpContent.Html;
 
     class TodoView : HtmlDoc
     {

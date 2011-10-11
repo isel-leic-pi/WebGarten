@@ -1,6 +1,8 @@
-namespace PI.WebGarten.Html
+namespace PI.WebGarten.HttpContent.Html
 {
     using System;
+
+    using PI.WebGarten.Html;
 
     public class HtmlBase
     {

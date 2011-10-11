@@ -5,10 +5,18 @@ namespace PI.WebGarten.Demos.First
     using System.Linq;
     using System.Net;
 
+    using PI.WebGarten.HttpContent.Html;
     using PI.WebGarten.MethodBasedCommands;
 
     class Controller
     {
+
+        [HttpCmd(HttpMethod.Get, "/xpto/{s}")]
+        public HttpResponse Get(string s)
+        {
+            return new HttpResponse(200, new TextContent(s));
+        }
+
         [HttpCmd(HttpMethod.Get, "/calc")]
         public HttpResponse Get()
         {

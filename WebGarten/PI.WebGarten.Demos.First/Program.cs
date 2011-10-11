@@ -4,7 +4,7 @@ namespace PI.WebGarten.Demos.First
 {
     using System;
     using PI.WebGarten;
-    using PI.WebGarten.Html;
+    using PI.WebGarten.HttpContent.Html;
 
     class DummyCommand : ICommand
     {

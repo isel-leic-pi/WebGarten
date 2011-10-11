@@ -1,6 +1,6 @@
 namespace PI.WebGarten.Demos.First
 {
-    using PI.WebGarten.Html;
+    using PI.WebGarten.HttpContent.Html;
 
     internal class FormView : HtmlDoc
     {

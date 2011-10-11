@@ -7,7 +7,7 @@ namespace PI.WebGarten.MethodBasedCommands
     {
         public Func<RequestInfo, object> TryGetBinder(ParameterInfo pi, HttpCmdAttribute attr)
         {
-            if(pi.ParameterType.IsPrimitive && (attr.UriTemplate.PathSegmentVariableNames.Contains(pi.Name.ToUpper()) || attr.UriTemplate.QueryValueVariableNames.Contains(pi.Name.ToUpper())))
+            if((pi.ParameterType.IsPrimitive || pi.ParameterType.Equals(typeof(String))) && (attr.UriTemplate.PathSegmentVariableNames.Contains(pi.Name.ToUpper()) || attr.UriTemplate.QueryValueVariableNames.Contains(pi.Name.ToUpper())))
             {
                 return ri => Convert.ChangeType(ri.Match.BoundVariables[pi.Name], pi.ParameterType);
             }

@@ -4,7 +4,7 @@ namespace PI.WebGarten.Demos.Todos
     using System.Linq;
 
     using PI.WebGarten.Demos.Todos.Model;
-    using PI.WebGarten.Html;
+    using PI.WebGarten.HttpContent.Html;
 
     class TodosView : HtmlDoc
     {

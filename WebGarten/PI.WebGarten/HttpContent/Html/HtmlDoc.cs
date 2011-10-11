@@ -1,7 +1,9 @@
-﻿using System.IO;
-
-namespace PI.WebGarten.Html
+﻿namespace PI.WebGarten.HttpContent.Html
 {
+    using System.IO;
+
+    using PI.WebGarten.Html;
+
     public class HtmlDoc : HtmlBase, IHttpContent
     {
         private readonly IWritable[] _c;

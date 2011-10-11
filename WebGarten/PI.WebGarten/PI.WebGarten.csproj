@@ -44,10 +44,11 @@
   <ItemGroup>
     <Compile Include="Handler.NotFound.cs" />
     <Compile Include="Handler.cs" />
-    <Compile Include="Html\HtmlDoc.cs" />
-    <Compile Include="Html\HtmlBase.cs" />
-    <Compile Include="Html\HtmlElem.cs" />
-    <Compile Include="Html\HtmlText.cs" />
+    <Compile Include="HttpContent\Html\HtmlDoc.cs" />
+    <Compile Include="HttpContent\Html\HtmlBase.cs" />
+    <Compile Include="HttpContent\Html\HtmlElem.cs" />
+    <Compile Include="HttpContent\Html\HtmlText.cs" />
+    <Compile Include="HttpContent\Text\TextContent.cs" />
     <Compile Include="HttpListenerBasedHost.cs" />
     <Compile Include="HttpMethod.cs" />
     <Compile Include="HttpResponse.cs" />

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using PI.WebGarten.Html;
 
 namespace PI.WebGarten
 {
+    using PI.WebGarten.HttpContent.Html;
+
     public partial class Handler
     {
         class NotFound : HtmlDoc

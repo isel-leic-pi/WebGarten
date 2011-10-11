@@ -10,6 +10,7 @@ namespace PI.WebGarten.MethodBasedCommands
         private readonly MethodInfo _mi;
         private readonly HttpCmdAttribute _attr;
         private readonly Func<RequestInfo, object>[] _binders;
+
         public MethodBasedCommand(MethodInfo mi, HttpCmdAttribute attr, IEnumerable<Func<RequestInfo, object>> binders)
         {
             _mi = mi;

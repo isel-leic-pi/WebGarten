@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using PI.WebGarten.Html;
-
-namespace PI.WebGarten
+﻿namespace PI.WebGarten
 {
-    public class Handler
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using PI.WebGarten.Pipeline;
+
+    public partial class Handler : IHttpFilter
     {
         private readonly IDictionary<string, UriTemplateTable> _tables = new Dictionary<string, UriTemplateTable>();
         private readonly string _baseAddress;
 
+        private HttpFilterPipeline _pipeline;
+
+
         public Handler(string baseAddress)
         {
             _baseAddress = baseAddress;
+            this._pipeline = new HttpFilterPipeline(this);
         }
 
         public void Add(params ICommand[] cmds)
@@ -20,32 +24,35 @@ namespace PI.WebGarten
             foreach(var cmd in cmds)
             {
                 UriTemplateTable t;
-                if(!_tables.TryGetValue(cmd.HttpMethod,out t))
+                if(!_tables.TryGetValue(cmd.HttpMethod, out t))
                 {
                     t = new UriTemplateTable(new Uri(_baseAddress));
                     _tables.Add(cmd.HttpMethod, t);
                 }
-                t.KeyValuePairs.Add(new KeyValuePair<UriTemplate, object>(cmd.UriTemplate,cmd));
+
+                t.KeyValuePairs.Add(new KeyValuePair<UriTemplate, object>(cmd.UriTemplate, cmd));
             }
         }
 
+        /// <summary>
+        /// Gets the <see cref="HttpFilterPipeline"/> instance to register filters.
+        /// </summary>
+        public HttpFilterPipeline Pipeline
+        {
+            get
+            {
+                return this._pipeline;
+            }
+        }
+
+
+
         public void Handle(HttpListenerContext ctx)
         {
-            UriTemplateTable t;
-            if(!_tables.TryGetValue(ctx.Request.HttpMethod, out t))
-            {
-                new HttpResponse(HttpStatusCode.MethodNotAllowed).Send(ctx);
-                return;
-            }
-            var match = t.MatchSingle(ctx.Request.Url);
-            if (match == null)
-            {
-                new HttpResponse(HttpStatusCode.NotFound, new NotFound()).Send(ctx);
-                return;
-            }
+            
             try
             {
-                var resp = (match.Data as ICommand).Execute(new RequestInfo(ctx, match));
+                var resp = this.Pipeline.Execute(ctx);
                 resp.Send(ctx);
             }
             catch (Exception)
@@ -54,13 +61,41 @@ namespace PI.WebGarten
             }
         }
 
-        class NotFound : HtmlDoc
+        #region Implementation of IHttpFilter
+
+        public string Name
         {
-            public NotFound()
-                :base("NotFound",
-                      Img("https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_errortext.png","404"))
-            {}
+            get
+            {
+                return "TerminatorHandlerFilter";
+            }
         }
 
+        public void SetNextFilter(IHttpFilter nextFilter)
+        {
+            // This method should never be called on thoi instance, because it is the
+            // Pipeline terminator
+            throw new NotImplementedException();
+        }
+
+        public HttpResponse Process(HttpListenerContext ctx)
+        {
+            UriTemplateTable t;
+            if (!_tables.TryGetValue(ctx.Request.HttpMethod, out t))
+            {
+                return new HttpResponse(HttpStatusCode.MethodNotAllowed);
+            }
+
+            var match = t.MatchSingle(ctx.Request.Url);
+            if (match == null)
+            {
+                return new HttpResponse(HttpStatusCode.NotFound, new NotFound());
+            }
+
+            var resp = (match.Data as ICommand).Execute(new RequestInfo(ctx, match));
+            return resp;
+        }
+
+        #endregion
     }
 }

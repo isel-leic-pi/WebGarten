@@ -11,7 +11,7 @@ namespace PI.WebGarten.MethodBasedCommands
                 new UriTemplateParameterBinder(),
                 new RequestParameterBinder(),
                 new FormUrlEncodingParameterBinder()
-                );
+        );
 
         public static ICommand[] GetCommandsFor(params Type[] types)
         {

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PI.WebGarten.Demos.First", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PI.WebGarten.Demos.Todos", "PI.WebGarten.Demos.Todos\PI.WebGarten.Demos.Todos.csproj", "{9C004C1F-7398-4583-B0AF-9843419F82A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PI.WebGarten.Tests", "PI.WebGarten.Tests\PI.WebGarten.Tests.csproj", "{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{9C004C1F-7398-4583-B0AF-9843419F82A9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{9C004C1F-7398-4583-B0AF-9843419F82A9}.Release|x86.ActiveCfg = Release|x86
 		{9C004C1F-7398-4583-B0AF-9843419F82A9}.Release|x86.Build.0 = Release|x86
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{14CC25E6-0BEC-42D7-BE6B-04E9745E2864}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using PI.WebGarten.MethodBasedCommands;
 
 namespace PI.WebGarten
 {
+    using PI.WebGarten.Pipeline;
+
     public class HttpListenerBasedHost
     {
         private readonly string _baseAddress;
@@ -30,6 +28,17 @@ namespace PI.WebGarten
             
         }
 
+
+        /// <summary>
+        /// Gets the <see cref="HttpFilterPipeline"/> instance to register filters.
+        /// </summary>
+        public HttpFilterPipeline Pipeline
+        {
+            get {
+                return _handler.Pipeline;
+            }
+        }
+
         public void OpenAndWaitForever()
         {
             try
@@ -44,7 +53,9 @@ namespace PI.WebGarten
             }
             finally
             {
-                if(_listener.IsListening) _listener.Close();
+                if (_listener.IsListening) {
+                    _listener.Close();
+                }
             }
         }
 

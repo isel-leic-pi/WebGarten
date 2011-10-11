@@ -42,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler.NotFound.cs" />
     <Compile Include="Handler.cs" />
-    <Compile Include="Html\Html.cs" />
+    <Compile Include="Html\HtmlDoc.cs" />
+    <Compile Include="Html\HtmlBase.cs" />
+    <Compile Include="Html\HtmlElem.cs" />
+    <Compile Include="Html\HtmlText.cs" />
     <Compile Include="HttpListenerBasedHost.cs" />
     <Compile Include="HttpMethod.cs" />
     <Compile Include="HttpResponse.cs" />
@@ -60,6 +64,9 @@
     <Compile Include="MethodBasedCommands\RequestParameterBinder.cs" />
     <Compile Include="MethodBasedCommands\MethodBasedCommandFactory.cs" />
     <Compile Include="MethodBasedCommands\UriTemplateParameterBinder.cs" />
+    <Compile Include="Pipeline\HttpFilterPipeline.HttpFilterCollection.cs" />
+    <Compile Include="Pipeline\HttpFilterPipeline.cs" />
+    <Compile Include="Pipeline\IHttpFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestInfo.cs" />
   </ItemGroup>

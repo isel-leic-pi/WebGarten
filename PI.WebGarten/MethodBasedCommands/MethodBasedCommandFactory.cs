@@ -8,12 +8,14 @@ namespace PI.WebGarten.MethodBasedCommands
     public class MethodBasedCommandFactory : ICommandFactory
     {
         private readonly Type[] _types;
+        private readonly IParameterBinder _binder;
 
         public MethodBasedCommandFactory(IParameterBinder binder, params Type[] types)
         {
             _types = types;
             _binder = binder;
         }
+
         public IEnumerable<ICommand> Create()
         {
             return 
@@ -25,11 +27,8 @@ namespace PI.WebGarten.MethodBasedCommands
                                           Attributes = mi.GetCustomAttributes(typeof(HttpCmdAttribute), false) as HttpCmdAttribute[]
                                       })
                     .Where(x => x.Attributes.Length == 1)
-                    .Select(x => new MethodBasedCommand(x.MethodInfo, x.Attributes[0], 
-                        ResolveBindersFor(x.MethodInfo, x.Attributes[0])));
+                    .Select(x => new MethodBasedCommand(x.MethodInfo, x.Attributes[0], ResolveBindersFor(x.MethodInfo, x.Attributes[0])));
         }
-
-        private readonly IParameterBinder _binder;
 
         private IEnumerable<Func<RequestInfo, object>> ResolveBindersFor(MethodInfo mi, HttpCmdAttribute attr)
         {

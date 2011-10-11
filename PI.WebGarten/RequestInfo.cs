@@ -10,7 +10,7 @@ namespace PI.WebGarten
             Context = ctx;
             Match = match;
         }
-        public UriTemplateMatch Match{get; private set; }
+        public UriTemplateMatch Match { get; private set; }
         public HttpListenerContext Context { get; private set; }
     }
 }

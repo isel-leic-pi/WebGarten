@@ -44,8 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\IToDoRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResolveUri.cs" />
+    <Compile Include="Model\ToDo.cs" />
+    <Compile Include="Controllers\ToDoController.cs" />
+    <Compile Include="Model\ToDoMemoryRepository.cs" />
+    <Compile Include="Model\ToDoRepositoryLocator.cs" />
+    <Compile Include="Controllers\ToDosController.cs" />
+    <Compile Include="Views\TodosView.cs" />
+    <Compile Include="TodoView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PI.WebGarten\PI.WebGarten.csproj">

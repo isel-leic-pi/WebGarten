@@ -2,7 +2,7 @@
 
 namespace PI.WebGarten
 {
-    public interface ICommand{
+    public interface ICommand {
         UriTemplate UriTemplate {get;}
         string HttpMethod{get;}
 

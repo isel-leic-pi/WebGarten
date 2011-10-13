@@ -1,6 +1,7 @@
 ﻿namespace PI.WebGarten.Demos.First
 {
     using System;
+    using System.Diagnostics;
     using System.Net;
 
     using PI.WebGarten.Pipeline;
@@ -28,10 +29,13 @@
             _nextFilter = nextFilter;
         }
 
-        public HttpResponse Process(HttpListenerContext ctx)
+        public HttpResponse Process(RequestInfo requestInfo)
         {
-            Console.WriteLine("[LogFilter]: Request for URI '{0}'", ctx.Request.Url);
-            return _nextFilter.Process(ctx);
+            var ctx = requestInfo.Context;
+            Trace.TraceInformation("[LogFilter]: Request for URI '{0}'", ctx.Request.Url);
+            var resp = _nextFilter.Process(requestInfo);
+            Trace.TraceInformation("[LogFilter]: User '{0}'", requestInfo.User.Identity.Name);
+            return resp;
         }
     }
 }

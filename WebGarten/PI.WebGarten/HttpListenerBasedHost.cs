@@ -17,6 +17,7 @@ namespace PI.WebGarten
             _handler = new Handler(_baseAddress);
             _listener = new HttpListener();
             _listener.Prefixes.Add(_baseAddress);
+            //_listener.AuthenticationSchemes = AuthenticationSchemes.Basic;
         }
 
         public void Add(params ICommand[] cmd)

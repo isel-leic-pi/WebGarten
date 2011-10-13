@@ -52,10 +52,10 @@
             
             try
             {
-                var resp = this.Pipeline.Execute(ctx);
+                var resp = this.Pipeline.Execute(new RequestInfo(ctx));
                 resp.Send(ctx);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 new HttpResponse(HttpStatusCode.InternalServerError).Send(ctx);
             }
@@ -78,8 +78,9 @@
             throw new NotImplementedException();
         }
 
-        public HttpResponse Process(HttpListenerContext ctx)
+        public HttpResponse Process(RequestInfo requestInfo)
         {
+            var ctx = requestInfo.Context;
             UriTemplateTable t;
             if (!_tables.TryGetValue(ctx.Request.HttpMethod, out t))
             {
@@ -92,7 +93,8 @@
                 return new HttpResponse(HttpStatusCode.NotFound, new NotFound());
             }
 
-            var resp = (match.Data as ICommand).Execute(new RequestInfo(ctx, match));
+            requestInfo.Match = match;
+            var resp = (match.Data as ICommand).Execute(requestInfo);
             return resp;
         }
 

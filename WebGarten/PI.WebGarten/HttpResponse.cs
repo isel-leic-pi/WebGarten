@@ -5,11 +5,27 @@ using System.Text;
 
 namespace PI.WebGarten
 {
+    using System;
+    using System.Reflection;
+
     public class HttpResponse
     {
         private readonly int _status;
         private readonly IHttpContent _content;
         private IDictionary<string, string> _headers;
+
+        private static readonly ISet<string> _HackedHeaders = new  HashSet<string> { "WWW-Authenticate"};
+
+        private static MethodInfo _AddInternalMethodInfo;
+
+        static HttpResponse()
+        {
+            _AddInternalMethodInfo = typeof(WebHeaderCollection).GetMethod("AddInternal", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (_AddInternalMethodInfo == null)
+            {
+                throw new Exception("Hacking HttpListener resctricted headers not supported");
+            }
+        }
 
         public HttpResponse WithHeader(string name, string value)
         {
@@ -52,8 +68,21 @@ namespace PI.WebGarten
             if (_headers == null) return;
             foreach (var p in _headers)
             {
-                resp.Headers[p.Key] = p.Value;
+                AddHeaderInternal(p.Key, p.Value, resp.Headers);
             }
+        }
+
+        private void AddHeaderInternal(string key, string value, WebHeaderCollection headers)
+        {
+            if (_HackedHeaders.Contains(key))
+            {
+                _AddInternalMethodInfo.Invoke(headers, new object[] { key, value });
+            }
+            else
+            {
+                headers[key] = value;
+            }
+
         }
 
         private void SendContent(HttpListenerResponse resp)

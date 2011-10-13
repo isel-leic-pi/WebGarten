@@ -3,14 +3,21 @@ using System.Net;
 
 namespace PI.WebGarten
 {
+    using System.Security.Principal;
+
     public class RequestInfo
     {
-        public RequestInfo(HttpListenerContext ctx, UriTemplateMatch match)
+        public RequestInfo(HttpListenerContext ctx)
         {
             Context = ctx;
-            Match = match;
         }
-        public UriTemplateMatch Match { get; private set; }
+
+        public UriTemplateMatch Match { get; internal set; }
         public HttpListenerContext Context { get; private set; }
+
+        public IPrincipal User
+        {
+            get; set;
+        }
     }
 }

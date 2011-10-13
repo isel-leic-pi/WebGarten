@@ -8,6 +8,6 @@
         String Name { get; }
 
         void SetNextFilter(IHttpFilter nextFilter);
-        HttpResponse Process(HttpListenerContext ctx);
+        HttpResponse Process(RequestInfo requestInfo);
     }
 }

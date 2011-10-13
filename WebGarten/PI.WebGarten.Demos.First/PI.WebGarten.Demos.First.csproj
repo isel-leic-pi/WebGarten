@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationFilter.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="FormView.cs" />
     <Compile Include="RequestConsoleLogFilter.cs" />
@@ -58,6 +59,10 @@
     <ProjectReference Include="..\PI.WebGarten\PI.WebGarten.csproj">
       <Project>{6FF2A3D3-D0BD-47A7-97C5-67C4DBB2A6F5}</Project>
       <Name>PI.WebGarten</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Private\PI.AuththenticationAndAuthirization\PI.AuththenticationAndAuthirization.csproj">
+      <Project>{BDE1C199-40CC-409F-ABF1-238DD4D1D14B}</Project>
+      <Name>PI.AuththenticationAndAuthirization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

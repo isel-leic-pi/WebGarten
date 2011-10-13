@@ -74,9 +74,9 @@
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        internal HttpResponse Execute(HttpListenerContext context)
+        internal HttpResponse Execute(RequestInfo requestInfo)
         {
-            return this._filtersCollection.GetFilterChain().Process(context);
+            return this._filtersCollection.GetFilterChain().Process(requestInfo);
 
         }
 

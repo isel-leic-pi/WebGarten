@@ -54,7 +54,7 @@
     <Compile Include="Model\ToDoRepositoryLocator.cs" />
     <Compile Include="Controllers\ToDosController.cs" />
     <Compile Include="Views\TodosView.cs" />
-    <Compile Include="TodoView.cs" />
+    <Compile Include="Views\TodoView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PI.WebGarten\PI.WebGarten.csproj">

@@ -34,7 +34,7 @@
             var ctx = requestInfo.Context;
             Trace.TraceInformation("[LogFilter]: Request for URI '{0}'", ctx.Request.Url);
             var resp = _nextFilter.Process(requestInfo);
-            Trace.TraceInformation("[LogFilter]: User '{0}'", requestInfo.User.Identity.Name);
+            Trace.TraceInformation("[LogFilter]: User '{0}'", requestInfo.User != null ? requestInfo.User.Identity.Name : String.Empty);
             return resp;
         }
     }

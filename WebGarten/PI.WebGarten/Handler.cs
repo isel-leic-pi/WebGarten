@@ -57,7 +57,7 @@
             }
             catch (Exception e)
             {
-                new HttpResponse(HttpStatusCode.InternalServerError).Send(ctx);
+                new HttpResponse(HttpStatusCode.InternalServerError, new InternalServerError()).Send(ctx);
             }
         }
 

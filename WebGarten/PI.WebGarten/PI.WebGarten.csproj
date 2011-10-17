@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler.InternalServerError.cs" />
     <Compile Include="Handler.NotFound.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="HttpContent\Html\HtmlDoc.cs" />

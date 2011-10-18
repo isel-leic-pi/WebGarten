@@ -36,7 +36,14 @@ namespace PI.WebGarten.MethodBasedCommands
             {
                 prms[i] = _binders[i](req);
             }
-            return _mi.Invoke(o, prms) as HttpResponse;
+            try
+            {
+                return _mi.Invoke(o, prms) as HttpResponse;
+            }
+            catch (TargetInvocationException e)
+            {
+                throw e.InnerException;
+            }
         }
     }
 }
